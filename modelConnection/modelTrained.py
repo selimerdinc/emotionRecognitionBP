@@ -3,6 +3,7 @@ from keras.preprocessing.image import img_to_array
 import cv2
 import numpy as np
 
+
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 classifier =load_model(r'C:\Users\selimerdinc\PycharmProjects\realTimeEmotionRecognation\models\model.h5')
 
@@ -33,6 +34,8 @@ while True:
             label=emotion_labels[prediction.argmax()]
             label_position = (x,y)
             cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1.8,(0,255,0),2)
+            f = open("../outputControl/output.txt", "a", encoding="utf-8")
+            print(label,file=f)
         else:
             cv2.putText(frame,'Yüz Bulunumadı',(30,80),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
     cv2.imshow('Emotion-Detector',frame)
