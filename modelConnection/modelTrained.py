@@ -3,6 +3,7 @@ from keras.preprocessing.image import img_to_array
 import cv2
 import numpy as np
 
+from outputControl.parseOutput import returnResult
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 classifier =load_model(r'C:\Users\selimerdinc\PycharmProjects\realTimeEmotionRecognation\models\model.h5')
@@ -41,6 +42,7 @@ while True:
     cv2.imshow('Emotion-Detector',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
+output="../outputControl/output.txt"
+returnResult(output)
 cap.release()
 cv2.destroyAllWindows()
