@@ -13,13 +13,13 @@ def returnResult(output):
     surpriseCount=outputs.count("surprise")
 
     toplam=happyCount+sadCount+angryCount+fearCount+disgustCount+neutralCount+surpriseCount
-    ortHappy=int((happyCount/toplam)*100)
-    ortSad=int((sadCount/toplam)*100)
-    ortAngry=int((angryCount/toplam)*100)
-    ortFear=int((fearCount/toplam)*100)
-    ortDisgust=int((disgustCount/toplam)*100)
-    ortNeutral=int((neutralCount/toplam)*100)
-    ortSurprise=int((surpriseCount/toplam)*100)
+    ortHappy=float((happyCount/toplam)*100).__round__(2)
+    ortSad=float((sadCount/toplam)*100).__round__(2)
+    ortAngry=float((angryCount/toplam)*100).__round__(2)
+    ortFear=float((fearCount/toplam)*100).__round__(2)
+    ortDisgust=float((disgustCount/toplam)*100).__round__(2)
+    ortNeutral=float((neutralCount/toplam)*100).__round__(2)
+    ortSurprise=float((surpriseCount/toplam)*100).__round__(2)
 
     list=["Happy","Sad","Angry","Fear","Disgust","Neutral","Surprise"]
     dataList=[happyCount,sadCount,angryCount,fearCount,disgustCount,neutralCount,surpriseCount]
