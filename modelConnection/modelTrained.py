@@ -1,7 +1,9 @@
+import time
 from keras.models import load_model
 from keras.preprocessing.image import img_to_array
 import cv2
 import numpy as np
+import datetime
 
 from outputControl.parseOutput import returnResult
 
@@ -31,12 +33,17 @@ while True:
             roi = img_to_array(roi)
             roi = np.expand_dims(roi,axis=0)
 
+            start = datetime.datetime.now()
             prediction = classifier.predict(roi)[0]
+            end = datetime.datetime.now()
+            pred_time = (end - start).total_seconds() * 1000
             label=emotion_labels[prediction.argmax()]
             label_position = (x,y)
             cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1.8,(0,255,0),2)
             f = open("../outputControl/output.txt", "a", encoding="utf-8")
+            a = open("../outputControl/predictMs.txt", "a", encoding="utf-8")
             print(label,file=f)
+            print("{} Tahmin Süresi = ".format(label),pred_time," ms",file=a)
         else:
             cv2.putText(frame,'Yüz Bulunumadı',(30,80),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
     cv2.imshow('Emotion-Detector',frame)
