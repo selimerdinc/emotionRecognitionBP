@@ -1,0 +1,7 @@
+Happy  =  1178 // Oran : % 66.44
+Sad  =  519 // Oran : % 29.27
+Angry  =  0 // Oran : % 0.0
+Fear  =  0 // Oran : % 0.0
+Disgust  =  7 // Oran : % 0.39
+Neutral  =  0 // Oran : % 0.0
+Surprise  =  69 // Oran : % 3.89

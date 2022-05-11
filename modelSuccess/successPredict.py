@@ -2,10 +2,8 @@ import datetime
 import os
 import numpy as np
 from keras.models import load_model
-from keras.preprocessing import image
-from keras.applications.mobilenet import preprocess_input
-
-from keras_preprocessing.image import load_img
+from keras_applications.resnet50 import preprocess_input
+from keras_preprocessing.image import load_img, img_to_array
 
 
 def load_images_from_folder(folder, m_dict, m_class):
@@ -19,7 +17,7 @@ def load_images_from_folder(folder, m_dict, m_class):
 
 def classify(img_path):
     img = load_img(img_path, target_size=(224, 224))
-    img_array = image.img_to_array(img)
+    img_array = img_to_array(img)
 
 
     img_batch = np.expand_dims(img_array, axis=(0))
@@ -46,7 +44,6 @@ def classify(img_path):
 # classify each of them and return class_name for current input image
 # calculate average accuracy for input images for selected directory
 
-
 m_dict = {}
 
 m_dict = load_images_from_folder(r'C:\Users\selimerdinc\PycharmProjects\realTimeEmotionRecognation\dataset\train\angry', m_dict, "Angry")
@@ -61,11 +58,19 @@ for img in m_dict:
     print("m_path: {} => class: {}".format(img, m_dict[img]))
 
 
-correct_found = 0
-for i in m_dict:
-     cur_label = classify(i)
-     if cur_label == m_dict[i]:
-         correct_found += 1
 
-print("total_img_ct: {}, correct_found: {}, avg_acc: {}".format(len(m_dict), correct_found,
-                                                                (correct_found / float(len(m_dict)))))
+
+correct_found = 0
+for img in m_dict:
+    cur_label = classify(img)
+    if cur_label == m_dict[img]:
+        correct_found += 1
+
+print("total_img_ct: {}, correct_found: {}, avg_acc: {}".format(len(m_dict), correct_found, (correct_found / float(len(m_dict)))))
+
+
+
+
+
+
+

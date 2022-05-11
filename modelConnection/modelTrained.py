@@ -1,4 +1,4 @@
-import time
+
 from keras.models import load_model
 from keras.preprocessing.image import img_to_array
 import cv2
@@ -49,7 +49,7 @@ while True:
     cv2.imshow('Emotion-Detector',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-output="../outputControl/output.txt"
+output="../outputControl/angryElapsedforPredictionTime.txt"
 returnResult(output)
 cap.release()
 cv2.destroyAllWindows()
